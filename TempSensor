@@ -1,0 +1,40 @@
+#include "Adafruit_DHT.h"
+
+#define DHTPIN 2     // what pin we're connected to
+
+#define DHTTYPE DHT22		// DHT 22 (AM2302)
+
+DHT dht(DHTPIN, DHTTYPE);
+
+void setup() {
+	Serial.begin(9600); 
+	Serial.println("DHTxx test!");
+
+	dht.begin();
+}
+
+void loop() {
+// Wait a few seconds between measurements.
+	delay(30000);
+
+
+// Read temperature as Celsius
+	
+  String Temperature = String(random(19, 23));
+	
+	// String Humidity = String(random(4, 10));
+
+	Particle.publish("Temperature", Temperature, PRIVATE);
+	// Particle.publish("Humidity", Humidity, PRIVATE);
+
+
+	Serial.print("Humid: "); 
+	Serial.print(Humidity);
+	Serial.print("% - ");
+	Serial.print("Temp: "); 
+	Serial.print(Temperature);
+	Serial.print("*C ");
+
+	
+
+}
