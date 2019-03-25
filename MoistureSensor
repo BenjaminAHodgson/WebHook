@@ -1,7 +1,7 @@
-const int sensor_pin = A4;	/* Soil moisture sensor O/P pin */
+const int sensor_pin = A4;	// Soil moisture sensor O/P pin 
 
 void setup() {
-  Serial.begin(9600);	/* Define baud rate for serial communication */
+  Serial.begin(9600);	// Define baud rate for serial communication 
 }
 
 void loop() {
@@ -11,8 +11,7 @@ void loop() {
   sensor_analog = analogRead(sensor_pin);
   moisture_percentage = (sensor_analog/4095.00) * 100;
   Serial.print("Moisture Percentage = ");
-  Serial.print(moisture_percentage);
-  Serial.print("%\n\n");
+  Serial.print(String(moisture_percentage));
   Particle.publish("Moisture", String(moisture_percentage), PRIVATE);
   delay(30000);
   
